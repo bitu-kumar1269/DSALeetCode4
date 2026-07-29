@@ -46,7 +46,7 @@ class Solution {
             }
             currlevel++;
         }
-        // System.out.print(maxSum);
+        System.out.print(maxSum);
         return maxLevel;        
     }
 }
