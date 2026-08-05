@@ -1,25 +1,27 @@
 class Solution {
     public int maxProduct(int[] nums) {
-        int n = nums.length;
-        if(n == 0) return 0;
+        if (nums.length == 0) return 0;
 
-        int dpMax[] = new int[n]; // DP tables
-        int[] dpMin = new int[n];
-    // // Base cases: single-element subarray at index 0
-        dpMax[0] = nums[0];
-        dpMin[0] = nums[0];
-        int max = nums[0];
-        
-        for(int i=1; i<n; i++){
-            int prod1 = dpMax[i-1] * nums[i];
-            int prod2 = dpMin[i-1] * nums[i];
+        int maxProd = nums[0];
+        int minProd = nums[0];
+        int globalMax = nums[0];
 
-            dpMax[i] = Math.max(nums[i], Math.max(prod1, prod2));
-            dpMin[i] = Math.min(nums[i], Math.min(prod1, prod2));
+        for (int i = 1; i < nums.length; i++) {
+            int current = nums[i];
 
-            max = Math.max(max ,dpMax[i]);
+            // If negative, multiplying flips max <-> min
+            if (current < 0) {
+                int temp = maxProd;
+                maxProd = minProd;
+                minProd = temp;
+            }
+
+            maxProd = Math.max(current, maxProd * current);
+            minProd = Math.min(current, minProd * current);
+
+            globalMax = Math.max(globalMax, maxProd);
         }
-        return max;
 
+        return globalMax;
     }
 }
