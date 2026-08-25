@@ -4,11 +4,12 @@ class Solution {
         for(int num: nums){
             set.add(num);
         }
-        for(int i=k; ; i=i+k){
-            if(!set.contains(i)){
-                if(i % k == 0)
-                    return i;
-            }
+        int multiple = k;
+
+        while (set.contains(multiple)) {
+            multiple += k;
         }
+
+        return multiple;
     }
 }
