@@ -14,7 +14,7 @@
  * }
  */
 class Solution {
-    public boolean inOrder(TreeNode root, int sum, int targetSum){
+    public boolean dfs(TreeNode root, int sum, int targetSum){
         if(root == null){
             return false;
         }
@@ -26,10 +26,10 @@ class Solution {
                 return false;
             }
         }
-        return inOrder(root.left, sum, targetSum) || inOrder(root.right, sum, targetSum);
+        return dfs(root.left, sum, targetSum) || dfs(root.right, sum, targetSum);
     }
     public boolean hasPathSum(TreeNode root, int targetSum) {
         int sum = 0;
-        return inOrder(root, sum , targetSum);
+        return dfs(root, sum , targetSum);
     }
 }
